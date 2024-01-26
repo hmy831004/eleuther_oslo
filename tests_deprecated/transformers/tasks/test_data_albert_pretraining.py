@@ -6,7 +6,7 @@ from oslo.transformers.tasks.data_albert_pretraining import (
     ProcessorForAlbertPretraining,
     DataCollatorForAlbertPretraining,
 )
-from tests.transformers.tasks.test_data_base import TestDataBinarization
+from tests_deprecated.transformers.tasks.test_data_base import TestDataBinarization
 
 try:
     from datasets import load_dataset

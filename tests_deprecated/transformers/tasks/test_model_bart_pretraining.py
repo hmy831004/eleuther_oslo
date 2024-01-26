@@ -12,7 +12,7 @@ from datasets import Dataset as Dt
 from datasets import DatasetDict, concatenate_datasets
 import os
 
-from oslo.torch.distributed import ParallelContext
+# from oslo.torch.distributed import ParallelContext
 from oslo.transformers.tasks.data_bart_pretraining import (
     ProcessorForBartPretraining,
     DataCollatorForBartPretraining,
@@ -81,7 +81,7 @@ if "__main__" == __name__:
     # torch.cuda.set_device(rank)
     # device = torch.cuda.current_device()
     print(f"rank = {rank} world_size = {world_size} device = {device}")
-    dataset_name = "wiki"  # cnn or wiki
+    dataset_name = "cnn"  # cnn or wiki
     dataset = get_cnn_data() if dataset_name == "cnn" else get_wiki_data()
 
     model_nm = "facebook/bart-base"
@@ -131,7 +131,7 @@ if "__main__" == __name__:
     # processed_dataset = dataset.load_from_disk(f'/home/bsj/.cache/huggingface/datasets/{dataset_name}_processed')
 
     # for Distributed Data Parallel
-    per_device_train_batch_size = 36
+    per_device_train_batch_size = 8
     strategy = "ddp"  # ddp or None
     dataloader_worker = 3 * 4  # user setting
     train_sampler = (
